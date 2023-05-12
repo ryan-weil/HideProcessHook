@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 16
-VisualStudioVersion = 16.0.29009.5
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HideProcessHook", "HideProcessHook\HideProcessHook.vcxproj", "{775F4734-D75B-4180-A0AC-9CF0E26F604B}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HideProcessHookTester", "HideProcessHookTester\HideProcessHookTester.vcxproj", "{783A67E9-7233-491C-83C9-E409B4024B89}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HideProcessHookInjector", "HideProcessHookInjector\HideProcessHookInjector.vcxproj", "{83F96B15-534F-4EB8-91EE-D8C0CA3F6C1A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,14 @@ Global
 		{783A67E9-7233-491C-83C9-E409B4024B89}.Release|x64.Build.0 = Release|x64
 		{783A67E9-7233-491C-83C9-E409B4024B89}.Release|x86.ActiveCfg = Release|Win32
 		{783A67E9-7233-491C-83C9-E409B4024B89}.Release|x86.Build.0 = Release|Win32
+		{83F96B15-534F-4EB8-91EE-D8C0CA3F6C1A}.Debug|x64.ActiveCfg = Debug|x64
+		{83F96B15-534F-4EB8-91EE-D8C0CA3F6C1A}.Debug|x64.Build.0 = Debug|x64
+		{83F96B15-534F-4EB8-91EE-D8C0CA3F6C1A}.Debug|x86.ActiveCfg = Debug|Win32
+		{83F96B15-534F-4EB8-91EE-D8C0CA3F6C1A}.Debug|x86.Build.0 = Debug|Win32
+		{83F96B15-534F-4EB8-91EE-D8C0CA3F6C1A}.Release|x64.ActiveCfg = Release|x64
+		{83F96B15-534F-4EB8-91EE-D8C0CA3F6C1A}.Release|x64.Build.0 = Release|x64
+		{83F96B15-534F-4EB8-91EE-D8C0CA3F6C1A}.Release|x86.ActiveCfg = Release|Win32
+		{83F96B15-534F-4EB8-91EE-D8C0CA3F6C1A}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
