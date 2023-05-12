@@ -4,16 +4,19 @@
 
 #pragma comment(lib, "Shlwapi.lib")
 
+#define ERROR(x)\
+printf(x);\
+getchar();\
+getchar();\
+return -1;\
+
 int main()
 {
 	LPVOID loadlibrary = (LPVOID)GetProcAddress(GetModuleHandleW(L"kernel32.dll"), "LoadLibraryW");
 
 	if (!PathFileExistsW(L"HideProcessHook.dll"))
 	{
-		printf("Failed to find HideProcessHook.dll in the current directory\n");
-		getchar();
-		getchar();
-		return -1;
+		ERROR("Failed to find HideProcessHook.dll in the current directory\n");
 	}
 
 	WCHAR buffer[MAX_PATH];
@@ -28,42 +31,47 @@ int main()
 
 	if (!handle)
 	{
-		printf("Failed to get a handle to pid %d\n", pid);
-		getchar();
-		getchar();
-		return -1;
+		ERROR("Failed to get a handle to pid\n");
 	}
 
 	LPVOID address = (LPVOID)VirtualAllocEx(handle, NULL, (wcslen(buffer) + 1) * sizeof(WCHAR), MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE);
 
 	if (!address)
 	{
-		printf("Failed to allocate string in remote process\n");
-		getchar();
-		getchar();
-		return -1;
+		ERROR("Failed to allocate string in remote process\n");
 	}
 
 	if (!WriteProcessMemory(handle, address, buffer, (wcslen(buffer) + 1) * sizeof(WCHAR), NULL))
 	{
-		printf("Failed to write string to remote process\n");
-		getchar();
-		getchar();
-		return -1;
+		ERROR("Failed to write string to remote process\n");
 	}
 
 	HANDLE thread = CreateRemoteThread(handle, NULL, 0, (LPTHREAD_START_ROUTINE)loadlibrary, address, 0, NULL);
 
-	if(!thread)
+	if (!thread)
 	{
-		printf("Failed to create remote thread\n");
-		getchar();
-		getchar();
-		return -1;
+		ERROR("Failed to create remote thread\n");
 	}
 
-	if (handle)
-		CloseHandle(handle);
+	if (WaitForSingleObject(thread, INFINITE) == WAIT_FAILED)
+	{
+		ERROR("Waiting for thread failed\n");
+	}
+		
+	DWORD ret = 0;
+	if (!GetExitCodeThread(thread, &ret)) 
+	{
+		ERROR("Failed to get thread exit code\n");
+	}
+
+	if (!ret)
+	{
+		ERROR("Bad thread exit code\n");
+	}
+		
+	CloseHandle(thread);
+
+	CloseHandle(handle);
 
 	return 0;
 }
