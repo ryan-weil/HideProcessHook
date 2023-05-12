@@ -6,7 +6,7 @@ Good for learning about basic byte-patch hooking on 32 bit and 64 bit systems.
 
 # Usage
 
-Inject the DLL into a process of the respective architecture, and it's NtQuerySytemInformation will be hooked, hiding whatever process was specified to be hidden from the linked list
+Inject the DLL into a process of the respective architecture, and its NtQuerySytemInformation will be hooked, hiding whatever process was specified to be hidden from the linked list
 
 # Compatibility
 Works on 32bit and 64bit systems, from Windows XP - Windows 10.
