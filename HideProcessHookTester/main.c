@@ -13,13 +13,14 @@
 
 int main()
 {
-	// Make sure to input your own path to the DLL below, or it will not work!
-#ifdef ENVIRONMENT64
-	LoadLibrary(L"C:\\Users\\Admin\\source\\repos\\HideProcessHook\\x64\\Debug\\HideProcessHook.dll");
-#endif
-#ifdef ENVIRONMENT32
-	LoadLibrary(L"C:\\Users\\Admin\\source\\repos\\HideProcessHook\\Win32\\Debug\\HideProcessHook.dll");
-#endif
+	BOOL result = LoadLibrary(L"HideProcessHook.dll");
+
+	if (!result)
+	{
+		printf("Failed to load HideProcessHook.dll - please ensure that it has been built");
+		getchar();
+		return;
+	}
 
 	NTSTATUS status;
 	PVOID buffer;
